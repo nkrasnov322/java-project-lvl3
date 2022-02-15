@@ -1,38 +1,17 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.function.Predicate;
-
-public final class StringSchema {
-
-    private ArrayList<Predicate<String>> predicates;
-
-    {
-        predicates = new ArrayList<>();
-    }
+public final class StringSchema extends BaseSchema {
 
     public void required() {
-        predicates.add((x) -> (x != null && !x.isEmpty()));
+        addPredicate((x) -> (x != null && !((String) x).isEmpty()));
     }
 
     public void minLength(int length) {
-        predicates.add((x) -> (x != null && x.length() >= length));
+        addPredicate((x) -> (x != null && ((String) x).length() >= length));
     }
 
     public void contains(String str) {
-        predicates.add((x) -> (x != null && x.contains(str)));
+        addPredicate((x) -> (x != null && ((String) x).contains(str)));
     }
-
-    public boolean isValid(String str) {
-        for (Predicate<String> predicate: predicates) {
-            if (!predicate.test(str)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-
 
 }
