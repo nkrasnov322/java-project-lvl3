@@ -2,15 +2,18 @@ package hexlet.code.schemas;
 
 public final class NumberSchema extends BaseSchema {
 
-    public void required() {
+    public NumberSchema required() {
         addPredicate((x) -> (x != null && x instanceof Integer));
+        return this;
     }
 
-    public void positive() {
-        addPredicate((x) -> (x != null) && ((Integer) x) > 0);
+    public NumberSchema positive() {
+        addPredicate((x) -> (x == null) || ((Integer) x) > 0);
+        return this;
     }
 
-    public void range(int min, int max) {
+    public NumberSchema range(int min, int max) {
         addPredicate((x) -> (x != null && ((Integer) x) >= min && ((Integer) x) <= max));
+        return this;
     }
 }
