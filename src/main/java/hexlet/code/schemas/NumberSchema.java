@@ -8,12 +8,12 @@ public final class NumberSchema extends BaseSchema {
     }
 
     public NumberSchema positive() {
-        addPredicate((x) -> (x == null) || ((Integer) x) > 0);
+        addPredicate((x) -> (x == null) || (x instanceof Integer && ((Integer) x) > 0));
         return this;
     }
 
     public NumberSchema range(int min, int max) {
-        addPredicate((x) -> (x != null && ((Integer) x) >= min && ((Integer) x) <= max));
+        addPredicate((x) -> (x != null && x instanceof Integer && ((Integer) x) >= min && ((Integer) x) <= max));
         return this;
     }
 }
